@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE struts PUBLIC
+	"-//Apache Software Foundation//DTD Struts Configuration 2.3//EN"
+	"http://struts.apache.org/dtds/struts-2.3.dtd">
+<struts>
+	<!-- 设置上传文件的总大小，默认是2M  struts.multipart.maxSize=2097152 -->
+	<constant name="struts.multipart.maxSize" value="20971520"/>
+	
+		<!-- 先配置包结构 -->
+	<package name="crm" extends="struts-default" namespace="/">
+		<!-- 配置全局的结果页面 -->
+		<global-results>
+			<result name="login" type="redirect">/login.jsp</result>
+		</global-results>
+		
+		<!-- 配置客户的Action，如果Action由Spring框架来管理，class标签上只需要编写ID值就OK -->
+		<action name="customer_*" class="customerAction" method="{1}">
+			<result name="page">/jsp/customer/list.jsp</result>
+			<result name="initAddUI">/jsp/customer/add.jsp</result>
+			<result name="save" type="redirectAction">customer_findByPage.action</result>
+			<result name="input">/jsp/error.jsp</result>
+			<result name="delete" type="redirectAction">customer_findByPage.action</result>
+			<result name="initUpdate">/jsp/customer/edit.jsp</result>
+			<result name="update" type="redirectAction">customer_findByPage.action</result>
+			
+			<!-- 引入默认的拦截器 -->
+			<interceptor-ref name="defaultStack">
+				<!-- 决定上传文件的类型 -->
+				<param name="fileUpload.allowedExtensions">.jpg,.txt</param>
+			</interceptor-ref>
+		</action>
+		
+		<!-- 配置用户的模块 -->
+		
+		<!-- 字典模块 -->
+		
+		<!-- 联系人模块 -->
+		
+	</package>
+
+</struts>
