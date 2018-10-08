@@ -14,6 +14,18 @@ TD {
 </STYLE>
 
 <META content="MSHTML 6.00.6000.16809" name=GENERATOR></HEAD>
+<!-- 引入JQ -->
+<script type="text/javascript" src="${ pageContext.request.contextPath }/js/jquery-1.11.3.min.js"></script>
+
+<script type="text/javascript">
+
+$('#reginid').click(function(){
+	alert("0-0");
+	
+})
+
+</script>
+
 <BODY>
 <FORM id=form1 name=form1 action="${ pageContext.request.contextPath }/user_login.action" method=post>
 
@@ -67,8 +79,13 @@ style="LEFT: 0px; POSITION: absolute; TOP: 0px; BACKGROUND-COLOR: #0066ff"></DIV
                 <INPUT id=btn 
                   style="BORDER-TOP-WIDTH: 0px; BORDER-LEFT-WIDTH: 0px; BORDER-BOTTOM-WIDTH: 0px; BORDER-RIGHT-WIDTH: 0px" 
                   type=image src="images/login_button.gif" name=btn> 
+
                   
-              </TD></TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
+              </TD>
+              <TD>
+                  <INPUT type="button" value="注册" id="reginid" name="reginid" > 
+              </TD>
+              </TR></TBODY></TABLE></TD></TR></TBODY></TABLE></TD></TR>
   <TR>
     <TD><IMG src="images/login_3.jpg" 
 border=0></TD></TR></TBODY></TABLE></DIV></DIV>

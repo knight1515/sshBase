@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	<class name="com.sshbase1.domain.User" table="sys_user">
+	<id name="user_id" column="user_id">
+		<generator class="native"/>
+	</id>
+	
+	<property name="user_code" column="user_code"/>
+	<property name="user_name" column="user_name"/>
+	<property name="user_password" column="user_password"/>
+	<property name="user_state" column="user_state"/>
+	
+	</class>
+
+</hibernate-mapping>

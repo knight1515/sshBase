@@ -31,6 +31,9 @@
 		</action>
 		
 		<!-- 配置用户的模块 -->
+		<action name="user_*" class="userAction" method="{1}">
+			<result name="loginOK" type="redirect">/index.jsp</result>
+		</action>
 		
 		<!-- 字典模块 -->
 		

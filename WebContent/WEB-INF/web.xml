@@ -42,7 +42,7 @@ xmlns="http://java.sun.com/xml/ns/javaee"
 	</error-page>
 	
 	<welcome-file-list>
-		<welcome-file>regist.jsp</welcome-file>
+		<welcome-file>login.jsp</welcome-file>
 	</welcome-file-list>
 
 </web-app>
