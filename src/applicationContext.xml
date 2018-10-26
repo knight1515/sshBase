@@ -13,6 +13,9 @@
 	http://www.springframework.org/schema/tx 
 	http://www.springframework.org/schema/tx/spring-tx.xsd">
 	
+	<!-- 开启注解的扫描 -->
+	<context:component-scan base-package="com.sshbase1"/>
+	
 	<!-- 先配置C3P0的连接池 -->
 	<bean id="dataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
 		<property name="driverClass" value="com.mysql.jdbc.Driver"/>
@@ -39,6 +42,10 @@
 		<property name="mappingResources">
 			<list>
 				<value>com/sshbase1/domain/User.hbm.xml</value>
+				<value>com/sshbase1/domain/Customer.hbm.xml</value>
+				<value>com/sshbase1/domain/Dict.hbm.xml</value>
+				<value>com/sshbase1/domain/Linkman.hbm.xml</value>
+				<value>com/sshbase1/domain/Visit.hbm.xml</value>
 			</list>
 		</property>
 		
@@ -53,6 +60,17 @@
 	<tx:annotation-driven transaction-manager="transactionManager"/>
 	
 	<!-- 配置客户模块 -->
+	<bean id="customerAction" class="com.sshbase1.web.action.CustomerAction" scope="prototype">
+		<property name="customerService" ref="customerService"/>
+	</bean>
+	
+	<bean id="customerService" class="com.sshbase1.service.CustomerServiceImpl">
+		<property name="customerDao" ref="customerDao"/>
+	</bean>
+	
+	<bean id="customerDao" class="com.sshbase1.dao.CustomerDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	
 	<!-- 配置用户的模块 -->
 	<bean id="userAction" class="com.sshbase1.web.action.UserAction" scope="prototype">
@@ -68,8 +86,30 @@
 	</bean>
 	
 	<!-- 配置字典模块 -->
+	<bean id="dictAction" class="com.sshbase1.web.action.DictAction" scope="prototype">
+		<property name="dictService" ref="dictService"/>
+	</bean>
+	
+	<bean id="dictService" class="com.sshbase1.service.DictServiceImpl">
+		<property name="dictDao" ref="dictDao"/>
+	</bean>
+	
+	<bean id="dictDao" class="com.sshbase1.dao.DictDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	
 	<!-- 配置联系人模块 -->
+	<bean id="linkmanAction" class="com.sshbase1.web.action.LinkmanAction" scope="prototype">
+		<property name="linkmanService" ref="linkmanService"/>
+	</bean>
+	
+	<bean id="linkmanService" class="com.sshbase1.service.LinkmanServiceImpl">
+		<property name="linkmanDao" ref="linkmanDao"/>
+	</bean>
+	
+	<bean id="linkmanDao" class="com.sshbase1.dao.LinkmanDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory"/>
+	</bean>
 	
 </beans>
 

@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	
+	<class name="com.sshbase1.domain.Dict" table="base_dict">
+		<id name="dict_id" column="dict_id">
+			<!-- 换成字符串生成的策略 -->
+			<generator class="uuid"/>
+		</id>
+		
+		<property name="dict_type_code" column="dict_type_code"/>
+		<property name="dict_type_name" column="dict_type_name"/>
+		<property name="dict_item_name" column="dict_item_name"/>
+		<property name="dict_item_code" column="dict_item_code"/>
+		<property name="dict_sort" column="dict_sort"/>
+		<property name="dict_enable" column="dict_enable"/>
+		<property name="dict_memo" column="dict_memo"/>
+		
+	</class>
+	
+</hibernate-mapping>    

@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+    
+<hibernate-mapping>
+	
+	<class name="com.sshbase1.domain.Customer" table="cst_customer">
+		<id name="cust_id" column="cust_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="cust_name" column="cust_name"/>
+		<property name="cust_user_id" column="cust_user_id"/>
+		<property name="cust_create_id" column="cust_create_id"/>
+		
+		<!-- <property name="cust_source" column="cust_source"/>
+		<property name="cust_industry" column="cust_industry"/>
+		<property name="cust_level" column="cust_level"/> -->
+		
+		<property name="cust_linkman" column="cust_linkman"/>
+		<property name="cust_phone" column="cust_phone"/>
+		<property name="cust_mobile" column="cust_mobile"/>
+		
+		<!-- 上传文件保存的路径 -->
+		<property name="filepath" column="filepath"/>
+		
+		<!-- 配置的多方 name是JavaBean属性名称  class="一方类的全路径" cloumn="外键的名称"  -->
+		<many-to-one name="source" class="com.sshbase1.domain.Dict" column="cust_source"/>
+		<many-to-one name="industry" class="com.sshbase1.domain.Dict" column="cust_industry"/>
+		<many-to-one name="level" class="com.sshbase1.domain.Dict" column="cust_level"/>
+		
+		<!-- 让客户放弃外键的维护的权力 -->
+		<set name="linkmans" inverse="true">
+			<key column="lkm_cust_id"/>
+			<one-to-many class="com.sshbase1.domain.Linkman"/>
+		</set>
+		
+	</class>
+	
+</hibernate-mapping>    

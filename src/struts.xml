@@ -8,6 +8,12 @@
 	
 		<!-- 先配置包结构 -->
 	<package name="crm" extends="struts-default" namespace="/">
+		
+		<!-- 配置拦截器 -->
+		<interceptors>
+			<interceptor name="userInterceptor" class="com.sshbase1.web.interceptor.UserInterceptor"/>
+		</interceptors>
+		
 		<!-- 配置全局的结果页面 -->
 		<global-results>
 			<result name="login" type="redirect">/login.jsp</result>
@@ -22,7 +28,9 @@
 			<result name="delete" type="redirectAction">customer_findByPage.action</result>
 			<result name="initUpdate">/jsp/customer/edit.jsp</result>
 			<result name="update" type="redirectAction">customer_findByPage.action</result>
+			<result name="findBySource">/jsp/totals/sources.jsp</result>
 			
+			<interceptor-ref name="userInterceptor"/>
 			<!-- 引入默认的拦截器 -->
 			<interceptor-ref name="defaultStack">
 				<!-- 决定上传文件的类型 -->
@@ -33,11 +41,32 @@
 		<!-- 配置用户的模块 -->
 		<action name="user_*" class="userAction" method="{1}">
 			<result name="loginOK" type="redirect">/index.jsp</result>
+			<interceptor-ref name="userInterceptor">
+				<param name="excludeMethods">login,regist,checkCode</param>
+			</interceptor-ref>
+			<interceptor-ref name="defaultStack"/>
 		</action>
 		
 		<!-- 字典模块 -->
+		<action name="dict_*" class="dictAction" method="{1}">
+			<interceptor-ref name="userInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
 		
 		<!-- 联系人模块 -->
+		<action name="linkman_*" class="linkmanAction" method="{1}">
+			<result name="page">/jsp/linkman/list.jsp</result>
+			<interceptor-ref name="userInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
+		
+		<!-- 客户拜访模块 -->
+		<action name="visit_*" class="visitAction" method="{1}">
+			<result name="page">/jsp/visit/list.jsp</result>
+			<result name="save" type="redirectAction">visit_findByPage.action</result>
+			<interceptor-ref name="userInterceptor"/>
+			<interceptor-ref name="defaultStack"/>
+		</action>
 		
 	</package>
 

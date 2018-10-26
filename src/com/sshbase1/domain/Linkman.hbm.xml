@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+    "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+    "http://www.hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+	
+	<class name="com.sshbase1.domain.Linkman" table="cst_linkman">
+		<id name="lkm_id" column="lkm_id">
+			<generator class="native"/>
+		</id>
+		
+		<property name="lkm_name" column="lkm_name"/>
+		<property name="lkm_gender" column="lkm_gender"/>
+		<property name="lkm_phone" column="lkm_phone"/>
+		<property name="lkm_mobile" column="lkm_mobile"/>
+		<property name="lkm_email" column="lkm_email"/>
+		<property name="lkm_qq" column="lkm_qq"/>
+		<property name="lkm_position" column="lkm_position"/>
+		<property name="lkm_memo" column="lkm_memo"/>
+		
+		<many-to-one name="customer" class="com.sshbase1.domain.Customer" column="lkm_cust_id"/>
+		
+	</class>
+	
+</hibernate-mapping>
+
+
+
+
+
+
+
+
+
+
